@@ -1,15 +1,18 @@
-food_times= [3,1,2]
-k = 5 # 네트워크 장애 시간
-i,a = 0,0
+food_times= [3,7,2]
+k = 10 # 네트워크 장애 시간
+
 N = len(food_times)
-while a<k :
-    if food_times[i]:
-        food_times[i]-=1
-        i = (i+1)%(N)
-        a += 1
+f_min=sorted(food_times)
+for i in range(N):
+    if k-f_min[i]*N < 0:
+        k = k - f_min[i-1]*N
+        break
     else :
-        i = (i + 1) % (N)
-print(i+1)
+        #print(food_times.index(f_min[i]))
+        food_times.pop(food_times.index(f_min[i]))
+
+print(k)
+print(food_times)
 
 
 
